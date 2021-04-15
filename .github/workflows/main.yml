@@ -6,9 +6,8 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - '*'
     
 jobs:
   build:
@@ -23,8 +22,8 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: docker build python
       run: |
-        docker build . -t ac941230/python:1.0.0
+        docker build . -t ac941230/python:${{ env.SOURCE_TAG }}
     - name: docker push
       run: |
-        docker push ac941230/python:1.0.0
+        docker push ac941230/python:${{ env.SOURCE_TAG }}
       
