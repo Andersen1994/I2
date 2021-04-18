@@ -8,7 +8,7 @@ app = Flask(__name__)
 def hello_world():
     config = get_config()
     secret = get_secret()
-    return f'Hello, World!\n Config: {config}\n Secret: {secret}'
+    return f'Hello, World!\n {config}\n {secret}'
 
 def get_config():
     try:
